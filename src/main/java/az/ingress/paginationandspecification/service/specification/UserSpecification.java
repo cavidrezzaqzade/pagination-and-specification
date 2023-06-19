@@ -11,6 +11,8 @@ import jakarta.persistence.criteria.Root;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
+import static az.ingress.paginationandspecification.util.PredicateUtil.applyLikePattern;
+
 /**
  * @author caci
  */
@@ -24,9 +26,13 @@ public class UserSpecification implements Specification<User> {
     public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
         var predicates = PredicateUtil.builder()
                 .addNullSafety(userCriteria.getBirthPlace(),
-                        birthPlace -> cb.like(root.get(root.get(User._))))
+                        birthPlace -> cb.like(root.get(root.get(User_.), applyLikePattern(birthPlace)))
+                )
+                .addNullSafety(userCriteria.getAgeFrom(), ageFrom -> cb.greaterThanOrEqualTo(root.get("age")))
+                .addNullSafety(userCriteria.getAgeTo(), ageTo -> cb.lessThanOrEqualTo(root.get("age")))
+                .build();
 
 
-        return ;
+        return cb.and(predicates);
     }
 }
