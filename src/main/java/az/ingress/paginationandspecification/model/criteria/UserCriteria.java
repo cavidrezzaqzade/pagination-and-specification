@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class UserCriteria {
-    private Integer ageFrom;
-    private Integer ageTo;
-    private String birthPlace;
+    private short ageFrom;
+    private short ageTo;
+    private String name;
 }

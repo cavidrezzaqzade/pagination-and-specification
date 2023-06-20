@@ -2,13 +2,16 @@ package az.ingress.paginationandspecification.service;
 
 import az.ingress.paginationandspecification.dao.entity.User;
 import az.ingress.paginationandspecification.dao.repository.UserRepository;
+import az.ingress.paginationandspecification.mapper.PageableMapper;
 import az.ingress.paginationandspecification.mapper.UserMapper;
 import az.ingress.paginationandspecification.model.UserDetails;
 import az.ingress.paginationandspecification.model.UserDto;
 import az.ingress.paginationandspecification.model.criteria.PageCriteria;
 import az.ingress.paginationandspecification.model.criteria.UserCriteria;
+import az.ingress.paginationandspecification.model.response.PageableUserResponse;
 import az.ingress.paginationandspecification.service.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -23,6 +26,7 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository repository;
     private final UserMapper mapper;
+    private final PageableMapper pageableMapper;
 
     private static final Integer PAGE_DEFAULT = 1;
     private static final Integer COUNT_DEFAULT = 10;
@@ -68,8 +72,7 @@ public class UserServiceImpl implements UserService{
         var pageNumber = pageCriteria.getPage() == null ? PAGE_DEFAULT : pageCriteria.getPage();
         var count = pageCriteria.getCount() == null ? COUNT_DEFAULT : pageCriteria.getCount();
 
-        var usersPage = repository.findAll(new UserSpecification(userCriteria), PageRequest.of(pageNumber, count));
-
-        return ;
+        Page<User> usersPage = repository.findAll(new UserSpecification(userCriteria), PageRequest.of(pageNumber, count));
+        return pageableMapper.mapToPageableResponse(usersPage);
     }
 }

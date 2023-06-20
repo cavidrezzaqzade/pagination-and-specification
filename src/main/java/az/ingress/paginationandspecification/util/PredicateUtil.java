@@ -1,9 +1,10 @@
 package az.ingress.paginationandspecification.util;
 
+import jakarta.persistence.criteria.Predicate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 /**
  * @author caci

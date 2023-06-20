@@ -2,6 +2,9 @@ package az.ingress.paginationandspecification.controller;
 
 import az.ingress.paginationandspecification.model.UserDetails;
 import az.ingress.paginationandspecification.model.UserDto;
+import az.ingress.paginationandspecification.model.criteria.PageCriteria;
+import az.ingress.paginationandspecification.model.criteria.UserCriteria;
+import az.ingress.paginationandspecification.model.response.PageableUserResponse;
 import az.ingress.paginationandspecification.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -51,4 +54,8 @@ public class UserController {
         return service.update(user);
     }
 
+    @GetMapping("/pagination")
+    public PageableUserResponse getUsers(PageCriteria pageCriteria, UserCriteria userCriteria){
+        return service.getUsers(pageCriteria, userCriteria);
+    }
 }

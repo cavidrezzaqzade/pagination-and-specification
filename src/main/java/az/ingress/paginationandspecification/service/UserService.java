@@ -4,6 +4,7 @@ import az.ingress.paginationandspecification.model.UserDetails;
 import az.ingress.paginationandspecification.model.UserDto;
 import az.ingress.paginationandspecification.model.criteria.PageCriteria;
 import az.ingress.paginationandspecification.model.criteria.UserCriteria;
+import az.ingress.paginationandspecification.model.response.PageableUserResponse;
 
 import java.util.List;
 
