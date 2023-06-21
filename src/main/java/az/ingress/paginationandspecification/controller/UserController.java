@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+import static az.ingress.paginationandspecification.service.card.CardValidationImpl.validateCard;
+
 /**
  * @author caci
  */

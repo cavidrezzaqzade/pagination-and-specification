@@ -1,5 +1,6 @@
 package az.ingress.paginationandspecification.service;
 
+import az.ingress.paginationandspecification.client.CatFactClient;
 import az.ingress.paginationandspecification.dao.entity.User;
 import az.ingress.paginationandspecification.dao.repository.UserRepository;
 import az.ingress.paginationandspecification.mapper.PageableMapper;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService{
     private final UserRepository repository;
     private final UserMapper mapper;
     private final PageableMapper pageableMapper;
+    private final CatFactClient client;
 
     private static final Integer PAGE_DEFAULT = 1;
     private static final Integer COUNT_DEFAULT = 10;
