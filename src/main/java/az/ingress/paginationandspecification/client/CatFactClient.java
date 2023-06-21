@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author caci
  */
 
-@FeignClient(name = "cat-fact-client", url = "https://catfact.ninja")
+@FeignClient(name = "cat-fact-client", url = "${cat-fact.client.url.root}")
 @Configuration
 public interface CatFactClient {
 
